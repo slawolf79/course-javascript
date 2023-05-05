@@ -25,7 +25,7 @@ function forEach(array, callback) {
    console.log(newArray); // выведет [1, 4, 9]
  */
 function map(array, callback) {
-  let newArray = array.slice();
+  let newArray = [...array];
   for(let i=0; i < array.length; i++) {
     const newItem = callback(array[i], i, array);
     newArray[i] = newItem;
