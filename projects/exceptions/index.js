@@ -21,9 +21,9 @@
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false (потому что как минимум первый элемент больше 10)
  */
 function isAllTrue(array, fn) {
-  if ((array.length === 0) || (!Array.isArray(array))) {
+  if ((typeof (array) !== 'object' && !(array instanceof Array)) || !(array.length)) {
     throw new Error ("empty array");
-  } else if (typeof fn !== 'function') {
+  } else if (typeof (fn) !== 'function') {
     throw new Error ("fn is not a function");
   }
   
@@ -41,6 +41,7 @@ try {
 } catch(e) {
   console.log(e.message);
 }
+
   
 
 /*
@@ -65,14 +66,14 @@ try {
  */
 function isSomeTrue(array, fn) {
   let count = 0;
-  if ((array.length === 0) || (!Array.isArray(array))) {
+  if ((typeof (array) !== 'object' && !(array instanceof Array)) || !(array.length)) {
     throw new Error ("empty array");
-  } else if (typeof fn !== 'function') {
+  } else if (typeof (fn) !== 'function') {
     throw new Error ("fn is not a function");
   }
   
   for (let i = 0; i < array.length; i++) {
-    let currentEl = fn(array[i]);
+    let currentEl = fn(array[i])
     if (currentEl = true) {
       count++;
     }
