@@ -11,7 +11,11 @@
    createDivWithText('loftschool') // создаст элемент div, поместит в него 'loftschool' и вернет созданный элемент
  */
 function createDivWithText(text) {
+  const element = document.createElement("div");
+  element.textContent = text;
+  return element;
 }
+
 
 /*
  Задание 2:
@@ -22,7 +26,12 @@ function createDivWithText(text) {
    prepend(document.querySelector('#one'), document.querySelector('#two')) // добавит элемент переданный первым аргументом в начало элемента переданного вторым аргументом
  */
 function prepend(what, where) {
+  // const elementOne = document.createElement(what);
+  // const elementTwo = document.createElement(where);
+  where.prepend(what);
+  // return elementTwo;
 }
+
 
 /*
  Задание 3:
@@ -44,7 +53,17 @@ function prepend(what, where) {
    findAllPSiblings(document.body) // функция должна вернуть массив с элементами div и span т.к. следующим соседом этих элементов является элемент с тегом P
  */
 function findAllPSiblings(where) {
+  const childElement = where.children;
+  const siblings = [];
+  for (let i = 0; i < childElement.length - 1; i++) {
+    if (childElement[i].nextElementSibling.nodeName == "P") {
+      siblings.push(childElement[i]);
+    }
+    
+  }
+  return siblings;
 }
+
 
 /*
  Задание 4:
@@ -66,7 +85,7 @@ function findAllPSiblings(where) {
 function findError(where) {
   const result = [];
 
-  for (const child of where.childNodes) {
+  for (const child of where.children) {
     result.push(child.textContent);
   }
 
@@ -86,6 +105,13 @@ function findError(where) {
    должно быть преобразовано в <div></div><p></p>
  */
 function deleteTextNodes(where) {
+  const childrenOfWhere = where.childNodes;
+  for (const child of childrenOfWhere) {
+    if (child.nodeType === 3) {
+      child.remove()
+    }
+  }
+  return where;
 }
 
 /*
@@ -109,8 +135,21 @@ function deleteTextNodes(where) {
    }
  */
 function collectDOMStat(root) {
-}
+  const statObj = {
+    tags: 0,
+    classes: 0,
+    texts: 0,
+  };
 
+  function collectInfoNodes(root) {
+    for (let child of root.childNodes) {
+      if (child.nodeType == 3) {
+        statObj.texts++;
+      } else if (child.nodeType == 1) {
+      }
+    }
+  }
+}
 export {
   createDivWithText,
   prepend,
