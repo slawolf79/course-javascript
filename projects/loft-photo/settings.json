@@ -1,0 +1,8 @@
+{
+  "proxy": {
+    "/loft-photo/api/": {
+      "target": "http://localhost:8888"
+    }
+  }
+}
+
